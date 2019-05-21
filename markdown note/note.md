@@ -1,33 +1,10 @@
-# 标题
-## 标题二
-### 标题三
-###### 标题六Markdown Preview EnhancedMarkdown Preview Enhanced
-*hello*
-**我够粗吗**
-```html {.line-numbers} {highlight=10}
-<template>
-```
+# 5.21
+## 标题的几种写法
 
-- [ ] @mentions, #refs, [links](), **formatting**, and <del>tags</del> supported
-- [ ] list syntax required (any unordered or ordered list supported)
-- [x] this is a complete item
-- [ ] this is an incomplete item
+# h1标题
+h1标题
+====
 
-First Header | Second Header
------------- | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column
-
-30^th^30
-
-H~2~O
-
-Content [^1]
-[^1]: Hi! This is a footnote
-
-*[HTML]: Hyper Text Markup Language
-*[W3C]:  World Wide Web Consortium
-The HTML specification
-is maintained by the W3C.
-
-==marked==
+## h2标题
+h2标题
+---
