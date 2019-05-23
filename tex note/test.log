@@ -1,0 +1,66 @@
+This is XeTeX, Version 3.14159265-2.6-0.999991 (MiKTeX 2.9.7000 64-bit) (preloaded format=xelatex 2019.5.23)  23 MAY 2019 14:38
+entering extended mode
+**"c:/Users/Administrator/Desktop/workspace/tex note/test.tex"
+("c:/Users/Administrator/Desktop/workspace/tex note/test.tex"
+LaTeX2e <2018-12-01>
+(F:\Miktex\tex/latex/base\article.cls
+Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
+(F:\Miktex\tex/latex/base\size10.clo
+File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (F:\Miktex\tex/latex/base\inputenc.sty
+Package: inputenc 2018/08/11 v1.3c Input encoding file
+\inpenc@prehook=\toks14
+\inpenc@posthook=\toks15
+
+
+Package inputenc Warning: inputenc package ignored with utf8 based engines.
+
+)
+No file test.aux.
+\openout1 = `test.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 10.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 10.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 10.
+[1
+
+] (test.aux) ) 
+Here is how much of TeX's memory you used:
+ 252 strings out of 427748
+ 2897 string characters out of 3154382
+ 63543 words of memory out of 3000000
+ 4354 multiletter control sequences out of 15000+200000
+ 6416 words of font info for 28 fonts, out of 3000000 for 9000
+ 1328 hyphenation exceptions out of 8191
+ 22i,6n,18p,191b,187s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on test.pdf (1 page).
