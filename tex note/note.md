@@ -57,7 +57,7 @@ TeX学习笔记
     \bfseries Boldface Series
 ```
 实现的效果如下
-![占位文字](..\static\5.23.2.png "字体族设置")
+![占位文字](https://raw.githubusercontent.com/shaolun-Ryan/Coding-Workstation/master/static/5.23.2.png "字体族设置")
 
 3. 字体形状设置
 ```latex
@@ -71,7 +71,7 @@ TeX学习笔记
 	{\scshape Small Caps Shape}
 ```
 实现的效果如下
-![占位文字](..\static\5.23.3.png "字体族设置")
+![占位文字](https://raw.githubusercontent.com/shaolun-Ryan/Coding-Workstation/master/static/5.23.3.png "字体族设置")
 
 4. 字体大小设置
 ```latex
@@ -90,7 +90,7 @@ TeX学习笔记
 	{\Huge Hello}
 ```
 实现的效果如下
-![占位文字](..\static\5.23.5.png "字体族设置")
+![占位文字](https://raw.githubusercontent.com/shaolun-Ryan/Coding-Workstation/master/static/5.24.5.png "字体族设置")
 
 ***
 
@@ -235,7 +235,7 @@ TeX学习笔记
 \end{document}
 ```
 实现效果如下：
-![占位文字](..\static\5.24.1.png "字体族设置")
+![占位文字](https://raw.githubusercontent.com/shaolun-Ryan/Coding-Workstation/master/static/5.24.1.png "字体族设置")
 
 ### 操作：
 
@@ -290,7 +290,7 @@ TeX学习笔记
 	\end{figure}
 ```
 效果如下：
-![占位文字](..\static\5.24.2.png "字体族设置")
+![占位文字](https://raw.githubusercontent.com/shaolun-Ryan/Coding-Workstation/master/static/5.24.2.png "字体族设置")
 ###### 设置图片的引用：
 ```latex
 \begin{document}
@@ -302,7 +302,7 @@ TeX学习笔记
 	\end{figure}
 ```
 效果如下：
-![占位文字](..\static\5.24.3.png "字体族设置")
+![占位文字](https://raw.githubusercontent.com/shaolun-Ryan/Coding-Workstation/master/static/5.24.3.png "字体族设置")
 ***
 添加数学公式
 ===
@@ -333,7 +333,7 @@ TeX学习笔记
 	\end{thebibliography}
 ```
 效果如下：
-![占位文字](..\static\5.24.5.png "字体族设置")
+![占位文字](https://raw.githubusercontent.com/shaolun-Ryan/Coding-Workstation/master/static/5.24.5.png "字体族设置")
 
 * **如果想实现文献文件的单独编写和多次引用，或者想知道一些BibTeX和Zotero的操作，请参阅[ *B站latex中文教程——参考文献* ](https://www.bilibili.com/video/av16002978/?p=13)**
 * **如果想了解关于Biber和BibLaTeX，请参阅[ *B站latex中文教程——BibLaTeX* ](https://www.bilibili.com/video/av16002978/?p=14)**
