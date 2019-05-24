@@ -351,5 +351,8 @@ TeX学习笔记
     \love{小猫}{鱼}
 ```
 * **还可以对环境进行重定义，请参阅[ *B站latex中文教程——newenvironment* ](https://www.bilibili.com/video/av16002978/?p=15)**
+<br>
+<br>
+<center><font color='OrangeRed' size=72>完结撒花!</font><center>
 
-# 完结撒花！
+
