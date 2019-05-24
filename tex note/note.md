@@ -47,7 +47,7 @@ TeX学习笔记
 	{\rmfamily Roman Family} {\sffamily Sans Serif Family} {\ttfamily Typewriter Family}
 ```
 实现的效果如下
-![占位文字](..\static\微信截图_20190523170328.png "字体族设置")
+![占位文字](https://raw.githubusercontent.com/shaolun-Ryan/Coding-Workstation/master/static/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190523170328.png "字体族设置")
 
 2. 字体系列设置
 ```latex
