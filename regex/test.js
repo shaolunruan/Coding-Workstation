@@ -1,4 +1,4 @@
-let str = 'adsf 23 jsu 890';
-let re = /\d/;//\d指所有数字
+let email = 'haywardryan@foxmail.com';
+let re = /\w+@[a-z0-9]+\.[a-z]/;
 
-console.log(str.search(re))//5
+console.log(re.test(email));

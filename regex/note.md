@@ -69,3 +69,64 @@ let re = /\d\d/g;//找出连续两个数字的组合
 
 console.log(str.match(re))//[ '23', '89' ]
 ```
+
+#### 量词
+* +表示“若干”
+```js
+Demo4：
+
+let str = 'adsf 23 jsu 890';
+let re = /\d+/g;//\d指所有数字
+
+console.log(str.match(re))//[ '23', '890' ]
+```
+
+#### replace
+* 替换所有匹配
+    * 返回替换后的字符串
+    * 例子：敏感词过滤
+```js
+Demo5：
+
+let str = 'abc aaa erw';
+let re = /a/g;
+
+console.log(str.replace(re,'0'));//0bc 000 erw
+```
+*如果不用正则的话，只能替换第一个字符*
+
+#### test
+检验一串字符串是否符合定义的正则表达式
+```js
+let email = 'haywardryan@foxmail.com';
+let re = /\w+@[a-z0-9]+\.[a-z]/;
+
+console.log(re.test(email))//true;
+```
+
+#### 方括号
+* 任意字符
+    * [abc]
+        *举例：[abc]pc实际上等价于apc,bpc或者cpc
+* 范围
+    * [a-z],[0-9]
+    * 功能同上
+* 排除
+    * [^a]
+    * 除了带a的，都要
+
+#### 转义字符
+* \d 数字 [0-9]
+* \w 英文,数字，下划线 [a-z0-9_]
+* \s 空白字符
+
+* \D [^0-9]
+* \W [^a-z0-9_]
+* \S 非空白字符
+
+#### 量词
+* {n} 正好出现n次
+* {n,m} 最少n次，最多m次
+* {n,} 最少n次，最多无限次
+* \+ 若干次
+* ? {0,1}
