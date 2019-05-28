@@ -353,7 +353,7 @@ TeX学习笔记
 * **还可以对环境进行重定义，请参阅[ *B站latex中文教程——newenvironment* ](https://www.bilibili.com/video/av16002978/?p=15)**
 <br>
 <br>
-<center><font color='OrangeRed' size=72>完结撒花!</font><center>
+<font color='OrangeRed' size=72>完结撒花!</font>
 
 <br>
 <br>
@@ -361,4 +361,52 @@ TeX学习笔记
 <br>
 
 ***
-[CSDN-中文字号和标准对照表](https://blog.csdn.net/xiazdong/article/details/8892070)
+[CSDN-中文字号和标准对照表]
+
+(https://blog.csdn.net/xiazdong/article/details/8892070)
+
+* 图片相对于页面的位置
+	* [h]  表示的当前位置（here），也就是说图片排在你设置的当前位置，但是如果这一页的空间不足以放下这个图片，此时图片会转到下一页。
+	* [t]  顶端(top)。此时系统会将图片放置在页面的顶部。
+	* [b] 底部. (bottom) 这里是优先将图片放置在底部，也就是页面的底部。
+	* [p]  这个是将图片设置为浮动状态，也就是可以根据系统排版的，自动放置图片的位置。
+	* [htbp] 优先放置在最佳位置，然后将其放在顶端最后放在底部。我们知道一般对于论文的输入可不是几个简单的文字和图片，可能还要有大量的公式，所以几个简单的命令一般会造成论文存在大量的空隙，所以我们一般将上面的命令结合着使用。
+
+* 增加脚注
+\footnote{content}
+* 报错Missing $ inserted.
+解决方法 看内容有没有_，如果有在前面加上转义字符
+* 加入同级段落：
+```latex
+\begin{itemize}
+	\item machine\_meta：机器的元信息和事件信息。
+	\item machine\_usage：每台机器的资源使用情况。
+	\item containe\_meta：容器的元信息和事件信息。
+	\item container\_usage：每个容器的资源使用情况。
+	\item batch\_instance：有关批处理工作负载中实例的信息。
+	\item batch\_task：有关批处理工作负载中实例的信息。
+\end{itemize}
+```
+* 设置页眉页脚页码的pkg
+\usepackage{fancyhdr}
+```latex
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{} 
+\chead{} 
+\rhead{\bfseries The performance of new graduates} 
+\lfoot{From: K. Grant} 
+\cfoot{To: Dean A. Smith}
+\rfoot{\thepage} 
+\renewcommand{\headrulewidth}{0.4pt} 
+\renewcommand{\footrulewidth}{0.4pt}
+......
+\begin{document}
+......
+\end{document}
+```
+* 用 \documentclass[openany]{book} 让 \chapter 可以从任何页面开始。
+* \noindent{content...}取消首行缩进
+* \thepage页号，\leftmark章标题，,\rightmark节标题
