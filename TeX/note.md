@@ -410,3 +410,7 @@ TeX学习笔记
 * 用 \documentclass[openany]{book} 让 \chapter 可以从任何页面开始。
 * \noindent{content...}取消首行缩进
 * \thepage页号，\leftmark章标题，,\rightmark节标题
+* \setcounter{page}{1}
+\pagenumbering{arabic}
+从这页开始编号 阿拉伯数字
+* \thispagestyle{empty}取消本页样式
