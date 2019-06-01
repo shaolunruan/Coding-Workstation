@@ -1,0 +1,8 @@
+<!-- 该文件类型是svg在svg文件中的结构实例 但由于不能写注释，所以还是在html文件中练习-->
+<!-- 在html中像引入图片一样引入svg文件 -->
+<?xml version="1.0" encoding='utf-8'?>
+<!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg.dtd'>
+<svg xmlns="http://www.w3.org/2000/svg">
+  <circle cx='100' cy='100' r='40' fill='red'>
+  </circle>
+</svg>
