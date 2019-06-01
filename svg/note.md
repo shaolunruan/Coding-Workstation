@@ -53,5 +53,31 @@ SVG学习笔记
 </body>
 </html>
 ```
-* 在元素中间加内容
+* 在元素中间加text内容
+```svg
+<div style='width:400px; height: 400px'>
+  <svg xmlns="http://www.w3.org/2000/svg" width='100%' height='100%'>
+    <g style="cursor:pointer">
 
+      <circle cx='200' cy='200' r='50' fill='transparent' stroke='black' stroke-width='5'></circle>
+      <text x='200' y='200' text-anchor='middle'>科鲁兹</text>
+      <!-- text-anchor水平居中 -->
+      
+    </g>
+  </svg>
+</div>
+```
+
+* 在元素之中添加图片
+```svg
+<div style='width:400px; height: 400px'>
+  <svg xmlns="http://www.w3.org/2000/svg" width='100%' height='100%'>
+    <g style="cursor:pointer">
+
+      <image x='200' y='200' width='100' height='103' xlink:href='img/main.png'></image>
+      <text x='200' y='200' text-anchor='middle'>科鲁兹</text>
+
+    </g>
+  </svg>
+</div>
+```
