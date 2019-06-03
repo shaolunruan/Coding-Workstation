@@ -111,3 +111,9 @@ SVG学习笔记
 
     * 大小写
     *相对于原点的坐标，即线段长度*
+
+* 如果想在html命令中实现复杂的svg绘图，可以现在illustrator中画好一个svg然后导出其path代码 *B站收藏过一个示例视频，链接[在此](https://www.bilibili.com/video/av26753050)* 
+
+![svg结合illustrator如图所示](..\static\6.2.1.png)
+
+* 后续学习如下：
