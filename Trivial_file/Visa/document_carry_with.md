@@ -27,6 +27,8 @@
 * When will you fly to the US?
 * What do your parents do in China?
 * Do you have any relatives in America?
+*(更多面试问题，可以看static里的图片)*
+
 
 # 面谈原则
 * 无移民倾向(国内发展好、独生子)
@@ -45,4 +47,6 @@
 * 熟悉每一份材料的作用、顺序、需要时及时拿出（或者作出动作）
 * 每个问题，回答后主动拿出（For more details you can see my XXX）
 * 面谈内容
-![啦啦啦](..\..\static\6.11.0.png)
+![啦啦啦](..\..\static\6.4.2.jpg)
+* 不要提CS，最好往数据科学上靠 30%check
+
