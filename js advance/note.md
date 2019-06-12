@@ -292,3 +292,36 @@ let d2 = new Date('12/03/2016 11:10:30')
 console.log(d2)
 //2016-12-03T03:10:30.000Z
 ```
+### 一些Date方法
+
+#### getDate()
+返回Date对象的天数
+```js
+let d2 = new Date('12/03/2016 11:10:30')
+
+console.log(d2.getDate())//12
+```
+
+#### getDay()
+返回星期几
+```js
+let d = new Date();
+
+console.log(d.getDay());//3
+//0表示周日
+```
+
+同理：getMonth()获取Date对象的月份
+
+#### getFullYear()
+获取完整的Date对象的年份
+
+#### getTime()
+获取当前月份的时间戳
+1970年到当前日期的毫秒数
+
+##### 获取当前的时间戳
+```js
+console.log(Date.now());
+```
+

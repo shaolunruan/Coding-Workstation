@@ -25,7 +25,11 @@
 
 // fun.apply(obj)
 
-let d2 = new Date('12/03/2016 11:10:30')
+// let d2 = new Date('12/03/2016 11:10:30')
 
 
-console.log(d2)
+// console.log(d2)
+
+let d = new Date();
+
+console.log(Date.now());
