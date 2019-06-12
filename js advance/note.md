@@ -113,4 +113,147 @@ arr.forEach((a,b)=>{//两个回调函数自变量
 // 9 8
 })
 ```
-76
+
+## slice()和splice()操作数组
+
+### slice()
+```js
+let arr = ['Tom','Jerry','Spark','Typhy']
+
+let a = arr.slice(0,3)
+
+console.log(a);
+// [ 'Tom', 'Jerry', 'Spark' ]
+```
+
+```js
+//表示倒数
+let arr = ['Tom','Jerry','Spark','Typhy']
+
+let a = arr.slice(1,-1)
+
+console.log(a);
+// [ 'Jerry', 'Spark' ]
+```
+
+### splice()
+>删除并添加新元素
+
+####删除元素
+```js
+let arr = ['Tom','Jerry','Spark','Typhy']
+
+arr.splice(0,2)
+
+console.log(arr);
+// [ 'Spark', 'Typhy' ]
+
+//splice()直接将原数组删除元素并返回
+```
+
+```js
+let arr = ['Tom','Jerry','Spark','Typhy']
+
+let a = arr.splice(0,2)
+
+console.log(a);
+// [ 'Tom', 'Jerry' ]
+
+//arr.splice()是要删除的元素
+```
+
+* 参数表示：
+    * 第一个：删除开始的元素索引
+    * 第二个：删除的数量
+    * 第三个及以后：要添加的元素，添加到第一个参数（开始位置）的前面
+* 功能：
+    * 删除元素
+    * 替换元素
+    * 直接添加元素（删除0个）
+
+## 数组方法
+
+### concat()
+>连接两个或多个数组，并将新数组返回
+
+不会对原数组产生影响
+
+```js
+let arr1 = ['Tom','Jerry','Spark','Typhy']
+
+let arr2 = [123,456,789]
+
+let arr = arr1.concat(arr2)
+
+console.log(arr);
+// [ 'Tom', 'Jerry', 'Spark', 'Typhy', 123, 456, 789 ]
+```
+
+### join()
+>将数组转化为字符串，并用,连接
+```js
+let arr = ['Tom','Jerry','Spark','Typhy']
+
+let result = arr.join()
+
+console.log(result);
+console.log(typeof result);
+
+console.log(result[3]);
+// Tom,Jerry,Spark,Typhy
+// string
+// ,
+```
+
+```js
+let arr = ['Tom','Jerry','Spark','Typhy']
+
+let result = arr.join('@')
+
+console.log(result);
+// Tom@Jerry@Spark@Typhy
+```
+
+### reverse()
+>反转原数组的排序，第一个跑到最后一个
+
+### sort()
+>对数组中的元素进行排序，默认会以Unicode进行排序
+```js
+let set = ['e','b','c','a','d']
+
+set.sort();
+
+console.log(set);
+// [ 'a', 'b', 'c', 'd', 'e' ]
+```
+
+```js
+let set = [4,3,5,2,11]
+
+set.sort();
+
+console.log(set);
+// [ 11, 2, 3, 4, 5 ]
+//很不科学
+```
+
+```js
+//自定义方案
+let set = [5,2,3,11,45]
+
+set.sort((a,b)=>{
+    if(a>b){
+    return 1;
+    }else if(a<b){
+        return -1;
+    }else{
+        return 0;
+    }
+});
+
+console.log(set);
+// [ 2, 3, 5, 11, 45 ]
+```
+
+## call和apply
