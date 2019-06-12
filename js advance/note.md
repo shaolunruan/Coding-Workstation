@@ -257,3 +257,38 @@ console.log(set);
 ```
 
 ## call和apply
+>函数对象中的方法，需要通过函数对象来调用
+
+在调用call和apply时，可以将一个对象指定为第一个参数
+此时这个对象将会成为函数执行时的this
+```js
+let obj = {};
+
+function fun(){
+    console.log(123)
+}
+
+// fun()
+// fun.call(obj)
+fun.apply(obj)//object Object
+```
+
+```js
+let obj = {name:'Tom'};
+
+function fun(){
+    console.log(this.name)
+}
+
+fun.apply(obj)//'Tom'
+```
+
+## Date对象
+如果直接使用构造函数new Date()创建一个Date对象，会成为当前的时间
+```js
+// 创建一个指定的时间对象
+let d2 = new Date('12/03/2016 11:10:30')
+
+console.log(d2)
+//2016-12-03T03:10:30.000Z
+```
