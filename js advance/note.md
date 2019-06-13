@@ -325,3 +325,146 @@ console.log(d.getDay());//3
 console.log(Date.now());
 ```
 
+## MAth()对象
+Math和其他的对象不同，不是一个构造函数。
+只是一个工具类，封装了数学相关的数学运算
+```js
+console.log(Math.PI);
+// 3.141592653589793
+
+//向上舍入
+console.log(Math.ceil(3.51));//4
+//向下舍入
+console.log(Math.floor(3.51));//3
+
+//取更大的那个值
+console.log(Math.max(1,10));//10
+//取更小的那个值
+console.log(Math.min(1,10));//1
+
+//生成0-1之间的随机数
+console.log(Math.random())//0.15484978798
+
+//把数四舍五入为最接近的整数
+console.log(round(1.677))//2
+
+```
+
+## 包装类
+
+JS中基本数据类型有：
+String、Number、Boolean、Null、Undefined
+引用数据类型有：
+Object
+
+在JS中为我们提供了三个包装类，可以将基本数据类型转化为对象：
+String()
+    -可以将基本数据类型转化为String对象
+Number()
+    -可以将。。转化为Number对象
+Boolean
+    -。。。转化为Boolean对象
+
+```js
+let num = new Number(3)
+
+console.log(typeof num);//objec
+
+let str = new String('hello')
+
+console.log(typeof str);//objec
+```
+
+```js
+num.name = '你好'
+console.log(num.name)//'你好'
+```
+包装类是js底层用来处理用的方法，一般自己不用，仅做了解
+
+## 字符串相关方法
+str.length 可以用来获取字符串长度
+
+字符串大部分方法不改变原数组
+
+### 方法
+
+```js
+let str = "Hello Atguigu"
+
+
+//charAt()
+// 返回指定位置的字符
+console.log(str.charAt(0));//H
+
+//拿到一些icon图标（CodeCharts）
+let result = String.fromCharCode(0x2692)
+
+console.log(result);//⚒
+
+//concat
+//连接两个或多个字符串
+//作用和+相同
+let new = str.concat('你好')
+console.log(new)
+
+//indexOf()
+//检索字符串
+let str = "Hello Atguigu"
+
+result = str.indexOf('H')
+
+console.log(result)//0
+
+//没有返回-1
+//有的话返回第一次出现的位置
+let str = "Hello Atguigu"
+
+result = str.indexOf('H',1)
+
+console.log(result)//6
+//可以指定开始的=查找的位置
+
+
+//lastIndexOf()
+//从后往前找字符
+
+//slice可以从字符串中截取指定内容
+let str = 'abcdefghijk'
+
+let result = str.slice(0,2)
+
+ console.log(result);//ab
+ //两个参数，开始和结束位置的索引
+
+ //substring
+ //和splice类似
+//不同的是这个方法不能接受负值
+
+//substr
+let str = 'abcdefghijk'
+
+let result = str.slice(3,2)
+
+ console.log(result);//de
+//第一个参数是开始截取的位置
+//第二个参数是截取的个数
+
+//split
+//可以将一个字符串拆分成一个数组
+let str = 'abc,def,ghi,jk'
+
+let result = str.split(',')
+
+ console.log(result);//[ 'abc', 'def', 'ghi', 'jk' ]
+ console.log(typeof result);//object
+ console.log(result[0]);//abc
+
+//toUpperCase
+//转换为大写
+
+//toLowerCase
+//转换为小写
+
+
+
+```
