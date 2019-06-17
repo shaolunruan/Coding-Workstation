@@ -466,5 +466,61 @@ let result = str.split(',')
 //转换为小写
 
 
+```
 
+### 全局作用域
+作用域指一个变量的作用范围
+
+1. 全局作用域
+   * 直接编写在script标签中的代码，都在全局作用域
+   * 全局作用域中有一个全局对象window，我们可以直接使用
+     * 代表了浏览器的窗口
+   * 在全局作用域中，创建的对象都会作为window对象的属性保存
+   * 
+  
+2. 函数作用域
+    * 。。。。。
+
+### let和var的区别
+* 全局对象window的属性
+```js
+let bar = 'hehe';
+var baz = 'lala'; 
+
+console.log(window.bar);  //undefined
+console.log(window.baz); // 'able'
+```
+
+* 块作用域
+```js
+function  aFun1(){
+    // i 对于for循环外的范围是不可见的(i is not defined)
+    for(let i = 1; i<5; i++){
+        //  i只有在这里是可见的
+    }
+    // i 对于for循环外的范围是不可见的(i is not defined)
+}
+function aFun2(){
+    // i 对于for循环外的范围是可见的
+    for(var i = 1;i<5; i++){
+        // i 在for 在整个函数体内都是可见的
+    }
+    // i 对于for循环外的范围是可见的
+}
+```
+
+* 重新声明
+```js
+let me  = 'foo';
+let me  = 'bar'; //SyntaxError: Identifier 'me' has already been declared
+
+var me = 'foo';
+var me = 'bar'; //这里me被替代了，是可以重复声明的
+```
+es6中还有一个声明变量的命令const，const和let都是在声明的块作用域中有效，但是let声明的变量可变，值和类型都可以改变，没有限制。const声明额变量不能改变，所以，const一旦声明一个变量，就必须马上初始化，不能留到以后赋值
+```js
+const hehe; //报错，Missing initializer in const declaration
+
+const a = 3;
+a = 5; //报错，Uncaught TypeError: Assignment to constant variable.
 ```
