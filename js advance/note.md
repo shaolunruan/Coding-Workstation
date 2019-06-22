@@ -493,7 +493,7 @@ console.log(window.baz); // 'able'
 
 * 块作用域
 ```js
-function  aFun1(){
+function aFun1(){
     // i 对于for循环外的范围是不可见的(i is not defined)
     for(let i = 1; i<5; i++){
         //  i只有在这里是可见的
