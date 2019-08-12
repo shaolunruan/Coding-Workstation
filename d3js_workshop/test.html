@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://d3js.org/d3.v3.js"></script>
+    <script>
+        // const linear = d3.scale.linear()
+        // .domain([0,5])
+        // .range([0,10])
+        // console.log(linear(15));    
+        var width = 960,
+            height = 960,
+            scale = width * 0.45;
+
+        const projection = d3.geo.projection((lambda, phi)=>{
+        var coslambda = Math.cos(lambda),
+            cosphi = Math.cos(phi),
+            k = 1 / (1 + coslambda * cosphi);
+        return [
+            k * cosphi * Math.sin(lambda),
+            -k * Math.sin(phi)
+        ];
+        })
+        .scale(scale)
+        .clipAngle(130)
+        .rotate([0, -90])
+        .translate([width / 2, height / 2])
+        .precision(0.1);
+
+        // console.log(projection);
+
+        var path = d3.geo.path()
+    .projection(projection);
+    </script>
+</body>
+<style>
+    body {
+  background: radial-gradient(720px at 490px, #081f2b 0%, #061616 100%);
+  height: 960px;
+}
+
+path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+</style>
+</html>
