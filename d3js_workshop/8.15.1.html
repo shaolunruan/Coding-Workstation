@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <script src="d3.min.js"></script> -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script>
+        const width = 800;
+        const height = 800;
+        const angles = d3.range(0,2*Math.PI,Math.PI/200)
+
+        const svg = d3.select("body")
+        .append("svg")
+        .attr("width",width)
+        .attr("height",height)
+
+        const path = d3.select("svg")
+        .append("g")
+        .attr("transform","translate(" + width/2 + "," + height/2 + ")")
+        .attr("fill","none")
+        .attr("stroke-width",10)
+        .attr("stroke-linejoin","round")
+
+        .selectAll("path")
+        .data(["cyan", "magenta", "yellow"])
+        .enter()
+        .append("path")
+        .attr('stroke',(d)=>{
+            return d
+        }
+        )
+        .style("mix-blend-mode", "multiply")//darken
+        .datum((d,i)=>{
+            return d3.radialLine()
+            .curve(d3.curveLinearClosed)
+            .angle(function(a) { return a; })
+            .radius(function(a) {
+            var t = d3.now() / 1000;
+            return 200 + Math.cos(a * 8 - i * 2 * Math.PI / 3 + t) * Math.pow((1 + Math.cos(a - t)) / 2, 3) * 32;
+          });
+        })
+
+        d3.timer(function() {
+  path.attr("d", function(d) {
+    return d(angles);
+  }
+  );
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="d3.min.js"></script>
+    <script>
+        const width = 1000;
+        const height = 1000;
+
+        const voronoi = d3.geom.voronoi()
+        .clipExtent([[0,0],[width,height]])//!!!!!!!!!!!!!!!![]
+
+        const svg = d3.select("body")//!!!!!!!!!!!!!!
+        .append("svg")
+        .attr("width",width)
+        .attr("height",height)
+
+        const dataset = d3.range(100)
+        .map(()=>{
+            return [Math.random()*width,Math.random()*height]
+        })
+
+        // console.log(dataset);
+
+        const data = voronoi(dataset)
+
+        // console.log(data);
+
+        const color = d3.scale.category10();///!!!!
+
+        const path = svg.append("g")
+        .selectAll("path")
+        .data(data)
+        .enter()//!!!!!!!!!!!!!!!!!
+        .append("path")
+        .attr("stroke","#FFF")
+        .attr("stroke-width",3)
+        .attr("d",(d)=>{
+            return "M" + d.join("L") + "Z"
+        })
+        .attr("fill",(d,i)=>{//!!!!!!!!!!
+            return color(i)
+        })
+
+        const circle = svg.append('g')
+        .selectAll("circle")
+        .data(dataset)
+        .enter()
+        .append("circle")
+        .attr("cx",(d)=>{
+            return d[0]//!!!!!!!!!!!!
+        })
+        .attr("cy",(d)=>{
+           return d[1]//!!!!!!!
+        })
+        .attr('r',3)
+        .attr('fill',"#FFF")
+        </script>
+</body>
+</html>
