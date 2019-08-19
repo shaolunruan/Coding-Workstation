@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+    <script src="d3.v4.min.js"></script>
+    <script>
+      const width = 960
+      height = 960
+      size = Math.max(width,height)
+      
+      const svg = d3.select("body")
+      .append("svg")
+      .attr("width",width)
+      .attr("height",height)
+
+
+      //d3.packSiblings的作用就是让circle不重合
+      const circles = d3.packSiblings(d3.range(400)
+      .map(d3.randomUniform(8,20))//功能相当于math.random()
+      .map(r=>{ 
+        return {
+                r:r
+        }
+      }))
+      // .filter(function(d) { return -300 < d.x && d.x < 500 && -500 < d.y && d.y < 500; }); 
+
+      const color = d3.scaleSequential()
+        .domain([0, 2 * Math.PI])    
+        .interpolator(d3.interpolateRainbow);
+
+      svg.append("g")
+      .attr("transform","translate("+width/2+","+height/2+')')
+      .selectAll("circle")
+      .data(circles)
+      .enter()
+      .append("circle")
+      .attr("fill",(d,i)=>{
+        return color(d.angle = Math.atan2(d.y, d.x));
+      })
+      .attr("cx", function(d) { return Math.cos(d.angle) * (size / Math.SQRT2 + 30); })//不规定d.x的后果就是都集中在中心点
+      .attr("cy", function(d) { return Math.sin(d.angle) * (size / Math.SQRT2 + 30); })
+      .attr("r",d=>{return d.r})//搭配上一条，结合起来用
+
+      .transition()
+      .ease(d3.easeCubicOut)
+      .delay(function(d) { return Math.sqrt(d.x * d.x + d.y * d.y) * 10; })//不明觉厉
+      .duration(1000)
+
+      .attr("cx",d=>{return d.x})//不规定d.x的后果就是都集中在中心点
+      .attr("cy",d=>{return d.y})
+      
+      
+
+      
+      console.log(circles);
+    </script>
+</body>
+</html>
