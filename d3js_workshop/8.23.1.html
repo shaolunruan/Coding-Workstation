@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="960" height="960"></canvas>
+    <script src="d3.v4.min.js"></script>
+    <script>
+        const width = 960,
+        height = 960
+        tau = 2*Math.PI
+        n = 1500
+        pi = Math.PI
+
+        const canvas = document.querySelector("canvas")
+        ctx = canvas.getContext("2d")
+
+        const nodes = d3.range(n).map(
+            i=>{
+                let r = Math.random() * width / 3,
+                a = Math.random() * tau,
+                x = width / 2 + r * Math.cos(a),
+                y = height / 2 + r * Math.sin(a);
+                return {
+                    x: x,
+                    y: y,
+                    vx: (height / 2 - y) * 0.006,
+                    vy: (x - width / 2) * 0.006
+                };
+            }
+        )
+
+        const force = d3.forceSimulation(nodes)
+        // .drag(0)
+        .velocityDecay(0.05)
+        .alphaDecay(0.8)
+        .alphaTarget(0.3)
+
+        .force("charge",d3.forceManyBody().strength(0.018))
+        .force("center",d3.forceCenter(width/2,height/2))
+        .on("tick",ticked)
+
+//另一种方式的颜色比例尺
+    //     const stroke = d3.scaleLinear()
+    // .domain([0, 10])
+    // .range(["magenta", "yellow"]);
+
+        const stroke = d3.scaleSequential()
+        .domain([0,10])    
+        .interpolator(d3.interpolateRainbow);
+
+        function ticked(){
+            ctx.clearRect(0,0,width,height)
+            ctx.lineWidth = 4
+            ctx.lineCap = 'square'
+
+//想让粒子不断运动，可以学习这种方式for循环 
+            for (var i = 0, node, vx, vy; i < n; i++) {
+    node = nodes[i];
+    ctx.beginPath();
+    ctx.moveTo(node.x, node.y);
+    ctx.lineTo(node.x + node.vx * 30, node.y + node.vy *30);
+    ctx.strokeStyle = stroke(node.vx * node.vx + node.vy * node.vy);
+    ctx.stroke();
+  }
+        }
+
+    </script>
+</body>
+</html>
