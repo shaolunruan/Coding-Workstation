@@ -1,5 +1,9 @@
-//栈的封装
-function Stack(){//Stack是一个类，很像Number类
+
+
+
+module.exports = function(){//栈的封装
+
+    function Stack(){//Stack是一个类，很像Number类
     //栈的属性
     this.items=[]
     // return this.items
@@ -45,14 +49,7 @@ function Stack(){//Stack是一个类，很像Number类
    
 
 //栈的使用
-let s = new Stack()
-s.push(20)
-s.push(10)
-s.push(100)
-s.push(77)
 
-s.pop()
-s.pop()
-
-console.log(s);
-console.log(s.isEmpty());
+// console.log(s);
+// console.log(s.isEmpty());
+}
