@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="d3.v4.min.js"></script>
+    <canvas width="960" height="960"></canvas>
+    <script>
+        const canvas = document.querySelector("canvas")
+        const ctx = canvas.getContext("2d")
+
+        const width = canvas.width
+        height = canvas.height
+        radius = 250
+        tau = 2*Math.PI
+
+        // const colors = d3.schemeCategory10
+            const colors = d3.scaleLinear()
+            .domain([0, 7])
+            .range(d3.interpolateCool);
+
+        const data = [1,1,2,3,5,8,13]
+
+        //生成布局函数
+        const arc = d3.arc()
+        
+
+        //生成饼图数据结构
+        const pie = d3.pie();
+
+        const arcs = pie(data)
+
+        console.log(arcs);
+
+        ctx.translate(width / 2, height / 2);
+        //可以调节透明度
+        ctx.globalAlpha = 10;
+
+        arcs.forEach((d,i)=>{
+
+        let r = (radius-d.value*10)
+
+        arc.outerRadius(radius-10+d.value*8)
+        .innerRadius(r)
+        .padAngle(0.03)
+        .context(ctx)
+
+        ctx.beginPath()
+        arc(d)
+        ctx.fillStyle = colors(i)
+        ctx.fill()
+
+        ctx.beginPath()
+        // ctx.moveTo(i*100,i*100)
+        // ctx.lineTo(Math.cos(i/Math.PI),Math.sin(i/Math.PI))
+        ctx.moveTo(0,0)
+        ctx.lineTo(r*Math.cos(d.startAngle-Math.PI/2),r*Math.sin(d.startAngle-Math.PI/2))
+        ctx.strokeStyle = colors(i)
+        ctx.lineWidth = 3
+        ctx.stroke()
+
+        ctx.beginPath()
+        // ctx.moveTo(i*100,i*100)
+        // ctx.lineTo(Math.cos(i/Math.PI),Math.sin(i/Math.PI))
+        ctx.moveTo(0,0)
+        ctx.lineTo(r*Math.cos(d.endAngle-Math.PI/2),r*Math.sin(d.endAngle-Math.PI/2))
+        ctx.strokeStyle = colors(i)
+        ctx.lineWidth = 3
+        ctx.stroke()
+        // ctx.beginPath();
+        // arcs.forEach(arc);
+        // ctx.stokeWidth = 1.5;
+        // ctx.stroke();
+        })
+        console.log(arc);
+
+        
+    </script>
+</body>
+</html>

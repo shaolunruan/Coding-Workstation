@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="d3.v4.min.js"></script>
+    <canvas width="960" height="500"></canvas>
+    <script>
+        const canvas = document.querySelector("canvas")
+        const ctx = canvas.getContext("2d")
+
+        const width = canvas.width
+        height = canvas.height
+        radius = Math.min(width,height)/2
+
+        const colors = d3.schemeCategory10
+
+        const data = [1,1,2,3,5,8,13]
+
+        const arc = d3.arc()
+        
+
+        const pie = d3.pie();
+
+        const arcs = pie(data)
+
+        console.log(arcs);
+
+        ctx.translate(width / 2, height / 2);
+        //可以调节透明度
+        ctx.globalAlpha = 0.5;
+
+        arcs.forEach((d,i)=>{
+            arc.outerRadius(radius-10)
+        .innerRadius(radius-d.value*10)
+        .padAngle(0.03)
+        .context(ctx)
+            ctx.beginPath()
+            arc(d)
+            ctx.fillStyle = colors[i]
+            ctx.fill()
+
+        ctx.beginPath();
+        arcs.forEach(arc);
+        ctx.stokeWidth = 1.5;
+        ctx.stroke();
+        })
+        console.log(arc);
+
+        
+    </script>
+</body>
+</html>

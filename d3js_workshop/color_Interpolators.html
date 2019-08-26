@@ -14,10 +14,14 @@
         const canvas = document.querySelector("canvas")
         const ctx = canvas.getContext("2d")
 
-        //实现彩虹的颜色插值
+        //实现彩虹的颜色插值-1
         const color = d3.scaleSequential()
         .domain([0, 2 * Math.PI])    
         .interpolator(d3.interpolateRainbow);
+        //实现彩虹的颜色插值-2
+        const colors = d3.scaleLinear()
+            .domain([0, 7])
+            .range(d3.interpolateCool);
 
 
         console.log(color(0.6));
