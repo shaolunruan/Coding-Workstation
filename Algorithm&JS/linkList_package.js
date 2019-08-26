@@ -46,6 +46,65 @@ function LinkedList(){
         }
         return listString
     }
+
+    //insert
+    LinkedList.prototype.insert = function(position,data){
+        //position的越界判断
+        if(position<0 || position > this.length )return false
+
+        //2.根据data 创建newNode
+        let newNode = new Node(data)
+
+        //3.判断插入的位置是否是第一个
+        if(position == 0){
+            newNode.next = this.head
+            this.head = newNode
+        }else{
+            let index = 0
+            let current = this.head
+            let previous = null
+            while(index++ < position){
+                previous = current
+                current =  current.next
+            }
+
+            newNode.next = current
+            previous.next  = newNode
+        }
+
+        //4.length+1
+        this.length += 1
+
+        return true
+    }
+
+    //get()方法
+    LinkedList.prototype.get = function(position){
+        //越界判断
+        if(position<0||position >= this.length)return null
+
+        //获取对应的data
+        let current = this.head
+        let index = 0
+        while(index++ < position){
+            current = current.next
+        }
+        return current.data
+    }
+
+    LinkedList.prototype.update = function(position, newData){
+        if(position<0||position >= this.length)return null
+
+        let current = this.head
+        let index = 0
+        while(index++ < position){
+            current = current.next
+        }
+
+        current.data = newData
+
+        return true
+    }
 }
 
 //测试
@@ -55,5 +114,13 @@ list.append("abc")
 list.append("cba")
 list.append("nba")
 
+list.insert(0,'aaa')
+list.insert(3,'bbb')
+list.insert(5,'ccc')
+
 
 console.log(list);
+
+console.log(list.get(0));
+
+// console.log(list);
