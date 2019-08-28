@@ -22,6 +22,10 @@
         const colors = d3.scaleLinear()
             .domain([0, 7])
             .range(d3.interpolateCool);
+        //实现彩虹的颜色插值-3
+        const color = d3.scaleOrdinal()
+    .domain(data.map(d =>{return d.name}))
+    .range(d3.quantize(d3.interpolateRainbow , data.length))
 
 
         console.log(color(0.6));

@@ -33,7 +33,10 @@
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     
-d3.csv("../data/data.csv", function(error, data) {//换tsv文件位置//y
+d3.csv("./data/data.csv", function(error, data) {//换tsv文件位置//y
+
+  // console.log(data);
+
   x.domain(data.map(function(d) { return d.name; }));
   y.domain([0, d3.max(data, function(d) { return d.value; })]);//
 

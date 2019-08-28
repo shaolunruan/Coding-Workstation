@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="d3.v4.min.js"></script>
+    <script>
+        const width = 960
+        height = 960
+
+        const svg = d3.select('body')
+        .append('svg')
+        .attr('width',width)
+        .attr('height',height)
+        // .attr("transform","translate(" + width/2 + "," + height/2 + ")")
+
+        //生成布局函数
+        const arc = d3.arc()
+        .innerRadius(0)
+        .outerRadius(Math.min(width,height)/2)
+
+        //生成饼图的标签函数
+        const arcLabel = d3.arc()
+        .innerRadius(Math.min(width, height) / 2 * 0.8)
+        .outerRadius(Math.min(width, height) / 2 * 0.8)//一样的半径，所以可以卡住
+
+        //生成饼图数据结构
+        const pie = d3.pie()
+        .value(function(d) { return d.value; })
+
+
+        //开始导入数据
+        d3.csv('./data/8271.csv',function(error,data){
+            const arcs = pie(data)
+    
+            
+            console.log(data);
+            console.log(arcs);
+
+    //         const color = d3.scaleOrdinal()
+    // .domain(data.map(d =>{return d.name}))
+    // .range(d3.schemeCategory20)
+
+    const color = d3.scaleOrdinal()
+    .domain(data.map(d =>{return d.name}))
+    .range(d3.quantize(d3.interpolateRainbow , data.length))
+            //开始画图
+            const path = svg
+            .append('g')
+            .attr("transform","translate(" + width/2 + "," + height/2 + ")")
+            // .attr('stroke','white')
+            .selectAll('path')
+            .data(arcs)
+            .enter()
+            .append("path")
+            .attr('d',arc)
+            .attr('stroke',"white")
+            // .attr('fill',"black")
+            .attr("fill", d =>{return  color(d.data.name)})
+            .style('opacity',0.6)
+            .append("title")
+            .text(d => {return `${d.data.name}: ${d.data.value.toLocaleString()}`});
+
+        svg.append('g')
+        .attr("transform","translate(" + width/2 + "," + height/2 + ")")
+        .selectAll('text')
+        .data(arcs)
+        .enter()
+        .append("text")
+        .attr("transform", function(d) { return "translate(" + arcLabel.centroid(d) + ")";  })
+        .call(text => text.append("tspan")
+          .attr("y", "-0.5em")
+          .attr("x", "-1em")
+          .attr("font-weight", "bold")
+          .text(d => d.data.name))
+        
+        .call(text => text.filter(d => (d.endAngle - d.startAngle) > 0.25).append("tspan")
+        //过滤较小的数据
+          .attr("x", "-1em")
+          .attr("y", "0.7em")
+          .attr("fill-opacity", 0.7)
+          .text(d => d.data.value.toLocaleString()));
+
+
+
+    //         svg.append("g")
+    //   .attr("font-family", "sans-serif")
+    //   .attr("font-size", 12)
+    //   .attr("text-anchor", "middle")
+    // .selectAll("text")
+    // .data(arcs)
+    // .enter()
+    // .append("text")
+    //   .attr("transform", d => `translate(${arcLabel.centroid(d)})`)
+    //   .call(text => text.append("tspan")
+    //       .attr("y", "-0.4em")
+    //       .attr("font-weight", "bold")
+    //       .text(d => d.data.name))
+    //   .call(text => text.filter(d => (d.endAngle - d.startAngle) > 0.25).append("tspan")
+    //       .attr("x", 0)
+    //       .attr("y", "0.7em")
+    //       .attr("fill-opacity", 0.7)
+    //       .text(d => d.data.value.toLocaleString()));
+
+        })
+
+
+    </script>
+</body>
+</html>
