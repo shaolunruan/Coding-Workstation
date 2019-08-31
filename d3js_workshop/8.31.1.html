@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="960" height="960"></canvas>
+    <script src="d3.v4.min.js"></script>
+    <script>
+        const canvas = document.querySelector('canvas')
+        context = canvas.getContext('2d')
+        width = canvas.width
+        height = canvas.height
+
+        const simulation = d3.forceSimulation()
+        .force('center',d3.forceCenter())
+        .force('link',d3.forceLink().id(d=>{
+            return d.id
+        }))
+        .force('charge',d3.forceManyBody())
+
+        d3.json('./data/8311.json',(error,graph)=>{
+            if(error) throw error;
+
+            simulation.nodes(graph.nodes)
+            .on('tick',ticked)
+
+            simulation.force('link')
+            .links(graph.links)
+
+            function ticked(){
+                
+            }
+        })
+    </script>
+</body>
+</html>
