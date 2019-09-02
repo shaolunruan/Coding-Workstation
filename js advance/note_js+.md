@@ -55,3 +55,16 @@ js 高级
     console.log('。。。')
 })()
 ```
+
+ES6
+===
+```js
+let p = new Promise(res=>{
+    console.log('aa');
+    res();//不写的话输出不了then的回调函数
+})
+
+p.then(()=>{
+    console.log('bb');
+})//aa bb
+```
