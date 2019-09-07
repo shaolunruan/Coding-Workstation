@@ -7,6 +7,7 @@ revealOptions:
 progress: true
 ---
 Foo
+===
 
 Note: test note
 

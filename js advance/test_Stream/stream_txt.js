@@ -1,5 +1,5 @@
 const fs = require('fs')
-const csv = require('fast-csv')
+// const csv = require('fast-csv')
 
 const ws = fs.createWriteStream('result_csv.txt')
 
