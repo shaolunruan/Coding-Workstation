@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <script src="d3.v3.min.js"></script>
+    <script src="d3.v4.min.js"></script>
     <script>
         const width = 960
         height =600;
@@ -27,33 +27,32 @@
   }
         })
 
-        // console.log(nodes);
 
-        const color = d3.scale.category10()
+        // const color = d3.scale.category10()
 
-        svg.append("g")
-        .selectAll("circle")
-        .data(nodes)
-        .enter()
-        .append("circle")
-        .attr("cx",d=>{
-            return d.x
-        })
-        .attr("cy",d=>{
-            return d.y
-            })
-        .attr("r",d=>{
-            return radius
-        })
-        .attr("fill",(d,i)=>{
-            return color(i%10)
-        })
-        // .attr("stroke","#000")
+        // svg.append("g")
+        // .selectAll("circle")
+        // .data(nodes)
+        // .enter()
+        // .append("circle")
+        // .attr("cx",d=>{
+        //     return d.x
+        // })
+        // .attr("cy",d=>{
+        //     return d.y
+        //     })
+        // .attr("r",d=>{
+        //     return radius
+        // })
+        // .attr("fill",(d,i)=>{
+        //     return color(i%10)
+        // })
+        // // .attr("stroke","#000")
 
-        // const voronoiData
+        // // const voronoiData
 
-        const voronoi = d3.geom.voronoi()
-        .clipExtent([[0,0],[width,height]])
+        const voronoi = d3.voronoi()
+        .extent([[0,0],[width,height]])
         
         const data = nodes.map((d,i)=>{
             return [d.x,d.y]
@@ -61,8 +60,10 @@
 
 
         const voronoidata = voronoi(data)
+        .polygons()
 
-        // console.log(voronoidata);
+        console.log(voronoidata);
+
         const path = svg.append("g")
         .selectAll("path")
         .data(voronoidata)

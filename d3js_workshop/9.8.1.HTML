@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="960" height="600"></canvas>
+    <script src="d3.v4.min.js"></script>
+    <script>
+        const canvas = document.querySelector('canvas')
+        ctx = canvas.getContext('2d')
+
+        const width = canvas.width
+        height = canvas.height
+        radius = 15
+
+        const nodes = d3.range(20)
+        .map((d,i)=>{
+            return {
+    x: Math.random() * (width - radius * 2) + radius,
+    y: Math.random() * (height - radius * 2) + radius,
+  }
+        })
+
+        const voronoi = d3.voronoi()
+        .extent([[0,0],[width,height]])
+        
+        const data = nodes.map((d,i)=>{
+            return [d.x,d.y]
+        })
+
+        const cell = voronoi(data)
+        .polygons()
+
+        console.log(cell);
+
+        ctx.beginPath();
+        cell.forEach(function(cell) { drawPolygon(cell); });
+        ctx.lineWidth = 2.5;
+        ctx.strokeStyle = "#666";
+        ctx.stroke();
+
+        function drawPolygon(points) {
+        ctx.moveTo(points[0][0], points[0][1]);
+        for (var i = 1, n = points.length; i < n; ++i) ctx.lineTo(points[i][0], points[i][1]);
+        ctx.closePath();
+        }
+
+    </script>
+</body>
+</html>
