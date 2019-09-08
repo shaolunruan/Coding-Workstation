@@ -14,8 +14,6 @@
         const canvas = document.querySelector('canvas')
         ctx = canvas.getContext('2d')
 
-        //画坐标轴
-
         //定义坐标轴的位置
         const border_left = 80
         border_right = 80
@@ -27,6 +25,47 @@
         //获取画布大小
         const canavas_width = canvas.width
         canavas_height = canvas.height
+
+
+       //设置背景
+       const width = canvas.width
+        height = canvas.height
+        radius = 15
+
+        const nodes = d3.range(30)
+        .map((d,i)=>{
+            return {
+    x: Math.random() * (width - radius * 2) + radius,
+    y: Math.random() * (height - radius * 2) + radius,
+  }
+        })
+
+        const voronoi = d3.voronoi()
+        .extent([[border_left,border_up],[width-border_right,height-border_down]])
+        
+        const data = nodes.map((d,i)=>{
+            return [d.x,d.y]
+        })
+
+        const cell = voronoi(data)
+        .polygons()
+
+        console.log(cell);
+
+        ctx.beginPath();
+        cell.forEach(function(cell) { drawPolygon(cell); });
+        ctx.lineWidth = 2.5;
+        ctx.strokeStyle = "#DCDCDC";
+        ctx.stroke();
+
+        function drawPolygon(points) {
+        ctx.moveTo(points[0][0], points[0][1]);
+        for (var i = 1, n = points.length; i < n; ++i) ctx.lineTo(points[i][0], points[i][1]);
+        ctx.closePath();
+        }
+
+
+        //画坐标轴
 
         //绘制X轴
         ctx.beginPath()
@@ -128,43 +167,6 @@
        prt_block(x+=intervel,3*border_up,300,480)
        prt_block(x+=intervel,2*border_up,150,666)
        prt_block(x+=intervel,3*border_up,600,52)
-
-       //设置背景
-       const width = canvas.width
-        height = canvas.height
-        radius = 15
-
-        const nodes = d3.range(20)
-        .map((d,i)=>{
-            return {
-    x: Math.random() * (width - radius * 2) + radius,
-    y: Math.random() * (height - radius * 2) + radius,
-  }
-        })
-
-        const voronoi = d3.voronoi()
-        .extent([[0,0],[width,height]])
-        
-        const data = nodes.map((d,i)=>{
-            return [d.x,d.y]
-        })
-
-        const cell = voronoi(data)
-        .polygons()
-
-        console.log(cell);
-
-        ctx.beginPath();
-        cell.forEach(function(cell) { drawPolygon(cell); });
-        ctx.lineWidth = 2.5;
-        ctx.strokeStyle = "#666";
-        ctx.stroke();
-
-        function drawPolygon(points) {
-        ctx.moveTo(points[0][0], points[0][1]);
-        for (var i = 1, n = points.length; i < n; ++i) ctx.lineTo(points[i][0], points[i][1]);
-        ctx.closePath();
-        }
 
     </script>
 </body>
