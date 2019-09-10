@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="d3.v4.min.js"></script>
+    <script>
+
+        const width = 960
+        height = 960
+
+        const svg  = d3.select('body')
+        .append('svg')
+      .attr("width",width)
+      .attr("height",height)
+
+      d3.csv('./data/9.9.csv',(err,data)=>{
+
+    //     const circles = d3.packSiblings(
+    //     d3.range(1000)
+    //     .map(d3.randomUniform(8,26))
+    //     .map(r=>{
+    //         return {
+    //             r:r
+    //         }
+    //     })
+    //   )
+
+const x = data.map(d=>{
+            if(d.cpu_percent < 50){
+                return {
+                    inst_name : d.inst_name,
+                    task_name : d.task_name,
+                    cpu_percent : d.cpu_percent,
+                    r : 23
+                }
+            }else{
+                return {
+                    inst_name : d.inst_name,
+                    task_name : d.task_name,
+                    cpu_percent : d.cpu_percent,
+                    r : d.cpu_percent*0.40
+                }
+                
+            }
+        })
+        const circles = d3.packSiblings(x)
+
+        console.log(circles);
+
+
+        const color = d3.scaleSequential()
+        .domain([0, data.length])    
+        .interpolator(d3.interpolateRainbow);
+
+
+      svg.append("g")
+      .attr("transform","translate("+width/2+","+height/2+')')
+      .selectAll("circle")
+      .data(circles)
+      .enter()
+      .append("circle")
+      .attr("cx",d=>{return d.x})//不规定d.x的后果就是都集中在中心点
+      .attr("cy",d=>{return d.y})
+      .attr("r",d=>{return d.r})
+      .attr("fill",(d,i)=>{
+        // return color(i)
+        // return 'black'
+        if(d.cpu_percent < 50){
+            return 'steelblue'
+        }else{
+            return color(i)
+        }
+      })
+      })
+
+    </script>
+</body>
+</html>

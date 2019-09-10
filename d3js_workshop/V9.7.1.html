@@ -54,7 +54,7 @@
 
         ctx.beginPath();
         cell.forEach(function(cell) { drawPolygon(cell); });
-        ctx.lineWidth = 2.5;
+        ctx.lineWidth = 1.5;
         ctx.strokeStyle = "#DCDCDC";
         ctx.stroke();
 
@@ -159,7 +159,7 @@
 
        //测试函数，分别代表色块位置xy，高负载节点和正常节点
        let x1 = 80
-       const intervel = 50
+       const intervel = 200
        let x = x1+intervel
 
        prt_block(x,2*border_up,200,100)
