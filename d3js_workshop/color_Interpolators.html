@@ -27,6 +27,9 @@
     .domain(data.map(d =>{return d.name}))
     .range(d3.quantize(d3.interpolateRainbow , data.length))
 
+        //实现两种颜色区域的渐变
+        var color = d3.scaleSequential(d3.interpolateLab("white", "steelblue"))
+    .domain([0, 20]);
 
         console.log(color(0.6));
 

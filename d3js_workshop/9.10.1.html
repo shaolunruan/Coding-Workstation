@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<svg width="960" height="700"></svg>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
+<script>
+
+var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
+
+//以下构造集中在画布中心的六边形阵列（不然会是散的）
+var delta = 0.001,
+    i = 0, j,
+    n = 10000, // Total number of random points.
+    k = 20; // Number of points to replace per frame.
+
+//生成高斯分布函数
+var rx = d3.randomNormal(width / 2, 150),
+    ry = d3.randomNormal(height / 2, 150),
+    points = d3.range(n).map(function() { return [rx(), ry()]; });
+
+    // console.log(points);
+
+
+var hexbin = d3.hexbin()
+    .radius(20)//六边形之间的间距
+    .extent([[0, 0], [width, height]])
+
+
+let origin = hexbin(points)
+
+console.log(origin.sort((a,b)=>{
+   return b.length-a.length
+}));
+
+let location2 = origin.sort((a,b)=>{
+   return b.length-a.length
+})
+
+d3.csv('./data/9.9.csv',(err,data)=>{
+    if(err) throw err;
+
+    // console.log(data);
+data = data.map((d,i)=>{
+        // console.log(d.inst_name);
+        return {
+            cpu_avg : d.cpu_avg,
+            x : location2[i].x,
+            y : location2[i].y
+        }
+    })
+    console.log(data);
+
+    var color = d3.scaleSequential(d3.interpolateLab("white", "steelblue"))
+    .domain([d3.min(data,d=>{return d.cpu_avg}), d3.max(data,   d=>{return d.cpu_avg})]);
+
+    var hexagon = svg.selectAll("path")
+  .data(data)
+  .enter().append("path")
+    .attr("d", hexbin.hexagon(19.5))//六边形的大小
+    .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+    .attr("fill", function(d) { return color(d.cpu_avg); });
+})
+
+
+
+
+</script>

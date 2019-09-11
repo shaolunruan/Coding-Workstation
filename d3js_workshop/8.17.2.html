@@ -24,13 +24,13 @@ d3.json("8173.json", function(error, graph) {
   simulation.force("link")
       .links(graph.links);
 
-//   d3.select(canvas)
-//       .call(d3.drag()
-//           .container(canvas)
-//           .subject(dragsubject)
-//           .on("start", dragstarted)
-//           .on("drag", dragged)
-//           .on("end", dragended));
+  // d3.select(canvas)
+  //     .call(d3.drag()
+  //         .container(canvas)
+  //         .subject(dragsubject)
+  //         .on("start", dragstarted)
+  //         .on("drag", dragged)
+  //         .on("end", dragended));
 
   function ticked() {
     context.clearRect(0, 0, width, height);
@@ -46,4 +46,5 @@ d3.json("8173.json", function(error, graph) {
     context.strokeStyle = "#fff";
     context.stroke();
   }
+  })
   </script>
