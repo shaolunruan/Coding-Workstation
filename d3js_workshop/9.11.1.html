@@ -71,7 +71,7 @@ var xAxis = d3.svg.axis()
 var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
-    .tickSize(-width, 0)
+    .tickSize(-width, 0)//刻度长度
     .tickFormat(formatChange);
 
 var line = d3.svg.line()

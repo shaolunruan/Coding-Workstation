@@ -52,7 +52,7 @@ data = data.map((d,i)=>{
     console.log(data);
 
     var color = d3.scaleSequential(d3.interpolateLab("white", "steelblue"))
-    .domain([d3.min(data,d=>{return d.cpu_avg}), d3.max(data,   d=>{return d.cpu_avg})]);
+    .domain(d3.extent(data,(d)=>{return d.cpu_avg}));
 
     var hexagon = svg.selectAll("path")
   .data(data)

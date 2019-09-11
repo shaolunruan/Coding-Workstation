@@ -35,15 +35,15 @@ const x = data.map(d=>{
                 return {
                     inst_name : d.inst_name,
                     task_name : d.task_name,
-                    cpu_percent : d.cpu_percent,
-                    r : 23
+                    cpu_percent : d.cpu_avg,
+                    r : 13
                 }
             }else{
                 return {
                     inst_name : d.inst_name,
                     task_name : d.task_name,
-                    cpu_percent : d.cpu_percent,
-                    r : d.cpu_percent*0.40
+                    cpu_percent : d.cpu_avg,
+                    r : d.cpu_avg*0.6
                 }
                 
             }
@@ -53,10 +53,8 @@ const x = data.map(d=>{
         console.log(circles);
 
 
-        const color = d3.scaleSequential()
-        .domain([0, data.length])    
-        .interpolator(d3.interpolateRainbow);
-
+        var color = d3.scaleSequential(d3.interpolateLab("orange", "red"))
+    .domain([0, data.length]);
 
       svg.append("g")
       .attr("transform","translate("+width/2+","+height/2+')')
@@ -70,8 +68,8 @@ const x = data.map(d=>{
       .attr("fill",(d,i)=>{
         // return color(i)
         // return 'black'
-        if(d.cpu_percent < 50){
-            return 'steelblue'
+        if(d.cpu_percent < 25){
+            return 'orange'
         }else{
             return color(i)
         }
