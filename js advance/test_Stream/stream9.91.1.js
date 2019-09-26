@@ -15,20 +15,27 @@ let i = 0;
 
 //开始处理
 rs.pipe(csv.parse({headers:true}))
-.pipe(through2.obj((chunk,enc,callback)=>{
+// .pipe(through2.obj((chunk,enc,callback)=>{
     
-    // console.log(`${typeof chunk}+${i+=1}`);
-    if(chunk.job_name == 'j_82329'){
-        i+=1
-    }
+//     // console.log(`${typeof chunk}+${i+=1}`);
+//     if(chunk.job_name == 'j_82329'){
+//         i+=1
+//     }
 
-    //this可能指向的是through2的可写流
-    console.log(this);
-    callback()
-}))
+//     //this可能指向的是through2的可写流
+//     console.log(this);
+//     callback()
+// }))
 .on('data',data=>{
-    console.log('正在读取')
+    // console.log('正在读取')
+    rs.pause()
+
+    setInterval(()=>{
+        rs.resume()
+    },500)
 })
+
+rs.pipe(res)
 
 .on('end',()=>{
     console.log('读取结束');

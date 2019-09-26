@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="d3.v4.min.js"></script>
+    <script>
+        // const scale = d3.scalePow().exponent(0.2)
+        // .domain([0,1000])
+        // .range([80,0])
+
+        const color = d3.scaleOrdinal()
+        .domain([1,2])
+        .range(['red','green'])
+
+        console.log(color(1));
+    </script>
+</body>
+</html>

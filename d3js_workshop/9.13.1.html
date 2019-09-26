@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="d3.v4.min.js"></script>
+    <script>
+        d3.csv("https://gist.githubusercontent.com/mbostock/7975a93258e543aaf94d1afbb1a7eca9/raw/c554bdebee10a449487ccfbef380131e50626061/unemployment.csv",(err,data)=>{
+            if(err) throw err
+
+            data = data.map(d=>{return {date: d.date, key: d.industry, value: d.unemployed}})
+
+            
+            keys = [
+  "Wholesale and Retail Trade"
+  ,"Manufacturing"
+  ,"Leisure and hospitality"
+  ,"Business services"
+  ,"Construction"
+  ,"Education and Health"
+  ,"Government"
+  ,"Finance"
+  ,"Self-employed"
+  ,"Other"
+  ,"Transportation and Utilities"
+  ,"Information"
+  ,"Agriculture"
+  ,"Mining and Extraction"
+]
+
+
+        })
+    </script>
+</body>
+</html>

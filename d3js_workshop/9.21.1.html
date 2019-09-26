@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="d3.v3.min.js"></script>
+    <script>
+
+        var margin = 140,
+    outerSize = 960,
+    innerSize = outerSize - margin * 2;
+
+
+    var svg = d3.select("body").append("svg")
+    .attr("width", outerSize)
+    .attr("height", outerSize)
+  .append("g")
+    .attr("transform", "translate(" + margin + "," + (margin + 120) + ")");
+
+    var y = d3.scale.linear()
+    .domain([0, 1])
+    .range([innerSize, 0]);
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .tickSize(-innerSize)
+    .tickPadding(8);
+
+var x = d3.scale.linear()
+    .domain([0, 1])
+    .range([0, innerSize]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom")
+    .tickSize(-innerSize)
+    .tickPadding(8);
+
+    svg.append("g")
+    .attr("class", "axis axis--x")
+    .attr("transform", "translate(0," + innerSize + ")")
+    .call(xAxis)
+
+
+svg.append("g")
+    .attr("class", "axis axis--y")
+    .call(yAxis)
+    
+
+    </script>
+</body>
+<style>
+    .background {
+  /* fill: #e7e7e7; */
+  fill: none;
+
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.line text {
+  font: bold 14px sans-serif;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+
+
+.line:hover text {
+  fill: red;
+}
+
+.line:hover path {
+  stroke: red;
+}
+</style>
+</html>

@@ -33,20 +33,34 @@ let b = arr.map((d,i)=>{
 })
 
 let arr2 = [{
-    x : 4
+    x : 2,
+    y: 2
 },{
-    x : 2
+    x : 4,
+    y:2
 },{
-    x: 3
+    x: 3,
+    y: 6
 },{
-    x: 1
+    x: 1,
+    y:10
 }]
 
 // for(let i in arr){
 //     arr[i] = 3
 // }
 
-let bb = arr2.map((d,i)=>{
-    return 3
-})
-console.log(bb);
+// let bb = arr2.map((d,i)=>{
+//     return 3
+// })
+// console.log(bb);
+
+// function ttt(a,b){
+//    return  b.x/b.y - a.x/a.y
+// }
+
+
+// console.log(arr2.sort(ttt));
+
+let arr3 = [56,64]
+console.log(arr3[0].key);

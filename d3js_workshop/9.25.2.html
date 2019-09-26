@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="123"></div>
+    <script src="d3.v4.min.js"></script>
+    <script>
+
+const svg_width = 960
+const svg_height = 500
+
+const svg = d3.select('body')
+.append('svg')
+.attr('width',960)
+.attr('height',500)
+
+
+var margin = {top: 30, right: 50, bottom: 30, left: 30},
+    width = svg_width - margin.left - margin.right,
+    height = svg_height - margin.top - margin.bottom,
+    labelPadding = 3;
+
+var g = svg.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    
+
+d3.csv("./data/9258.csv", function(error, data) {
+  if (error) throw error;
+
+// console.log(data.columns.sclice(1));
+console.log(data);
+
+     
+
+  var series = data.columns.slice(2).map(function(key) {
+    return data.map(function(d) {
+      return {
+        key: key,
+        time_stamp: d.time_stamp,
+        value: d[key]
+      };
+    });
+  });
+
+console.log(series);
+
+  var x = d3.scaleBand()
+    //   .domain(d3.extent(data,d=>{return d.time_stamp}))
+    .domain(series[0].map(d=>{return d.time_stamp}))
+      .range([0, width])
+
+console.log(x(100012));//0
+
+
+  var y = d3.scaleLinear()
+    //   .domain([0, d3.max(series, function(s) { return d3.max(s, function(d) { return parseInt(d.value); }); })])
+        .domain([0, 1])
+      .range([height, 0]);
+
+
+      let z = ['#2D95BF','#955BA5']
+
+      let background = g.append('g')
+      .attr('transform',`translate(${x(100014)+88},${margin.top})`)
+
+      background.append('rect')
+      .attr('class','rect1')
+      .attr('width',width/2-margin.left)
+      .attr('height',height-margin.top*4)
+      .attr('transform',`translate(0,${margin.top})`)
+      .attr('rx',20)
+      .attr('ry',20)      
+
+      background.append('rect')
+      .attr('class','rect2')
+      .attr('width',width/2-margin.left)
+      .attr('height',height-margin.top*4)
+      .attr('transform',`translate(${-width/2+margin.left},${margin.top})`)
+      .attr('rx',20)
+      .attr('ry',20)
+
+
+    g.append("g")
+      .attr("class", "axis axis--x")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x).tickSize(-(height-margin.bottom)))
+    //   var a = document.querySelector("svg g").getElementsByClassName('axis axis--x')
+    //   console.log(a);
+
+    g.append('g')
+    .call(d3.axisLeft(y))
+    // 
+
+    let serie = g.selectAll(".serie")
+    .data(series)
+    .enter().append("g")
+    .attr("class", "serie")
+    .attr('transform',`translate(88,0)`)
+
+
+
+    //以下是画单一折现的代码
+    //   .data([series[0]])//这个【】很关键，表示了可以通石化多组直线
+    // .attr('class','line')
+    // .style('stroke', function(d,i) { return z[i]; })
+    //   .attr("d", d3.line()
+    //       .x(function(d) { return x(d.time_stamp); })
+    //       .y(function(d) { return y(d.value); })
+
+    //     );
+
+
+
+  serie.append("path")
+      .attr("class", "line")
+      .style("stroke", function(d,i) { return z[i]; })
+      .attr("d", d3.line()
+          .x(function(d) { return x(d.time_stamp); })//0
+          .y(function(d) { return y(d.value); })
+        );
+
+
+
+  var label = serie.selectAll(".label")
+      .data(function(d) { return d; })
+    .enter().append("g")
+      .attr("class", "label")
+      .attr("transform", function(d, i) { return "translate(" + x(d.time_stamp) + "," + y(d.value) + ")"; });
+
+  label.append("text")
+      .attr('class','label_text')
+      .attr("dy", "-.35em")
+      .text(function(d) { return d.value; })
+    .filter(function(d, i) { return i === data.length - 1; })
+    .append("tspan")
+      .attr("class", "label-key")
+      .text(function(d) { return " " + d.key; });
+
+
+       svg.append("text")
+      .text('m_2300')//////////
+      .attr('x',0.1*width)
+        .attr('y',0.75*height)
+        .attr('class','text_machine_id')
+
+  });
+    </script>
+</body>
+
+<style>
+
+.rect1 {
+  fill: #FF96AE;
+  opacity: 0.5;
+}
+
+.rect2{
+  fill:#64B0CC;
+  opacity: 0.25;
+  border-radius: 10
+}
+    .label_text {
+  font: 20px sans-serif;
+}
+
+.axis text{
+  font-size: 15px
+}
+
+
+.axis line {
+  fill: none;
+  stroke: #FFB03B;
+  border-style: hidden;
+  shape-rendering: crispEdges;
+}
+
+.line {
+  fill: none;
+  stroke-width: 12px;
+}
+
+.label {
+  text-anchor: middle;
+  font-size :10px
+}
+
+.label rect {
+  fill: white;
+}
+
+.label-key {
+  font-weight: bold;
+}
+
+
+.text_machine_id{
+        font-size: 200px;
+        opacity: 0.12;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif 
+    }
+</style>
+</html>
