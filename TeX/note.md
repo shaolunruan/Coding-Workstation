@@ -413,3 +413,7 @@ TeX学习笔记
 \pagenumbering{arabic}
 从这页开始编号 阿拉伯数字
 * \thispagestyle{empty}取消本页样式
+
+### 插入图片位置的宏包
+* \usepackage{stfloats} 'p本页 tbh上下 此处' [ht]、[hb]
+* \usepackage{float} [H]就尾随在文字后（强制）

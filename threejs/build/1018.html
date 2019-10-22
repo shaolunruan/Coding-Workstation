@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="../three.js"></script>
+    <script>
+
+        let scene = new THREE.Scene();
+
+        //选择透视相机，参数：可视角75度，宽高比，近切面，远切面
+        let camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000)
+
+        let renderer = new THREE.WebGLRenderer()
+
+        //渲染器设置尺寸
+        renderer.setSize(window.innerWidth,window.innerHeight)
+
+        document.body.appendChild(renderer.domElement)
+
+        // renderer.render(scene,camera)
+
+        // console.log(renderer);
+
+        //添加方块
+
+        //设置方块的长宽高SOLO-尹菲
+        let g = new THREE.BoxGeometry(1,1,1)
+        let material = new THREE.MeshBasicMaterial({color:0xff0000})
+        let cube = new THREE.Mesh(g,material)
+
+        scene.add(cube)
+
+        camera.position.z = 10
+        renderer.render(scene,camera)
+
+        function animate(){
+            requestAnimationFrame(animate)
+            cube.rotation.x +=0.01
+            cube.rotation.y +=0.01
+            renderer.render(scene,camera)
+        }
+
+        animate()
+
+
+    </script>
+</body>
+</html>

@@ -10,51 +10,51 @@
     <script src="d3.v4.min.js"></script>
     <script>
 
-        const width = 960
-        height = 960
+        const width = 1200
+        height = 1200
 
         const svg  = d3.select('body')
         .append('svg')
       .attr("width",width)
       .attr("height",height)
 
-      d3.csv('./data/9.9.csv',(err,data)=>{
+    //   d3.csv('./data/9.9.csv',(err,data)=>{
 
-    //     const circles = d3.packSiblings(
-    //     d3.range(1000)
-    //     .map(d3.randomUniform(8,26))
-    //     .map(r=>{
-    //         return {
-    //             r:r
-    //         }
-    //     })
-    //   )
-
-const x = data.map(d=>{
-            if(d.cpu_percent < 50){
-                return {
-                    inst_name : d.inst_name,
-                    task_name : d.task_name,
-                    cpu_percent : d.cpu_avg,
-                    r : 13
-                }
-            }else{
-                return {
-                    inst_name : d.inst_name,
-                    task_name : d.task_name,
-                    cpu_percent : d.cpu_avg,
-                    r : d.cpu_avg*0.6
-                }
-                
+        const circles = d3.packSiblings(
+        d3.range(80)
+        .map(d3.randomUniform(4,16))
+        .map(r=>{
+            return {
+                r:r
             }
         })
-        const circles = d3.packSiblings(x)
+      )
 
-        console.log(circles);
+// const x = data.map(d=>{
+//             if(d.cpu_percent < 50){
+//                 return {
+//                     inst_name : d.inst_name,
+//                     task_name : d.task_name,
+//                     cpu_percent : d.cpu_avg,
+//                     r : 13
+//                 }
+//             }else{
+//                 return {
+//                     inst_name : d.inst_name,
+//                     task_name : d.task_name,
+//                     cpu_percent : d.cpu_avg,
+//                     r : d.cpu_avg*0.6
+//                 }
+                
+//             }
+//         })
+        // const circles = d3.packSiblings(x)
+
+        // console.log(circles);
 
 
-        var color = d3.scaleSequential(d3.interpolateLab("orange", "red"))
-    .domain([0, data.length]);
+    //     var color = d3.scaleSequential(d3.interpolateLab("orange", "red"))
+    // .domain([0, data.length]);
 
       svg.append("g")
       .attr("transform","translate("+width/2+","+height/2+')')
@@ -67,14 +67,14 @@ const x = data.map(d=>{
       .attr("r",d=>{return d.r})
       .attr("fill",(d,i)=>{
         // return color(i)
-        // return 'black'
-        if(d.cpu_percent < 25){
-            return 'orange'
-        }else{
-            return color(i)
-        }
+        return '#BF8975'
+        // if(d.cpu_percent < 25){
+        //     return 'orange'
+        // }else{
+        //     return color(i)
+        // }
       })
-      })
+    //   })
 
     </script>
 </body>
