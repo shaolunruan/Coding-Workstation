@@ -214,3 +214,55 @@ scene.updateMatrixWorld(true);
   scene.add(newGroup)
   group2.add(newGroup)
 ```
+
+## BVH数据
+BVh数据是BioVision数据，是记载人体的运动后生成的动画信息，广泛运用于3Dmax等游戏行业
+
+## 绑定光源和物理
+```js
+var bulbGeometry = new THREE.SphereBufferGeometry( 0.02, 16, 8 );
+				bulbLight = new THREE.PointLight( 0xffee88, 1, 100, 2 );
+
+				bulbMat = new THREE.MeshStandardMaterial( {
+					emissive: 0xffffee,
+					emissiveIntensity: 1,
+					color: 0x000000
+				});
+				bulbLight.add( new THREE.Mesh( bulbGeometry, bulbMat ) );//使光源和物理信息绑定‘’
+				bulbLight.position.set( 0, 2, 0 );
+				bulbLight.castShadow = true;
+				scene.add( bulbLight );
+
+```
+
+## 添加用户控制界面
+dat.gui
+
+## 添加另一种控制器
+TrackballControls
+```js
+	controls.rotateSpeed = 1.0;
+				controls.zoomSpeed = 1.2;
+				controls.panSpeed = 0.8;
+
+				controls.noZoom = false;
+				controls.noPan = false;
+
+				controls.staticMoving = false;
+				controls.dynamicDampingFactor = 0.15;
+
+				controls.keys = [ 65, 83, 68 ];
+```
+
+## 使物体具有金属感
+```js
+				var objectMaterial = new THREE.MeshStandardMaterial( { color: 0xffffff, roughness: 0.5, metalness: 1.0 } );
+```
+
+## 随机生成的位置
+```js
+mesh.position.x = 400 * ( 0.5 - Math.random() );
+```
+
+## group和scene重用时
+先添加group到场景中，再在循环里添加物体到group，这样可能不会出错

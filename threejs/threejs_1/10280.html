@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script src="./three.js"></script>
+        <script src="./OrbitControls.js"></script>
+        <script src="./stats.min.js"></script>
+
+
+        <script>
+            <!-- 开始建立cube模型 -->
+            // 创建场景
+            const scene = new THREE.Scene()
+            scene.background = new THREE.Color( 0xf0f0f0 );
+
+                //创建结构
+                const geometry = new THREE.BoxGeometry(100,100,100)
+
+                //创建材质
+                const material = new THREE.MeshBasicMaterial({
+                    // color:'steelblue',
+                    // wireframe:true,
+                     vertexColors: THREE.FaceColors,
+                     overdraw: 0.5
+                })
+
+                //创建颜色
+                for(let i = 0;i< geometry.faces.length;i+=2){
+                    let hex = Math.random()*0xffffff
+                    geometry.faces[i].color.setHex(hex)
+                    geometry.faces[i+1].color.setHex(hex)
+                }
+
+                console.log(geometry);
+                //创建模型
+                let cube = new THREE.Mesh(geometry,material)
+
+                //向场景中插入模型
+                scene.add(cube)
+
+                //设置产生投影的网格模型，产生投影
+                cube.castShadow = true
+
+
+                //设置投影面
+                const geoPlane = new THREE.PlaneGeometry(300, 300)
+                const matPlane = new THREE.MeshLambertMaterial({color:0xe0e0e0})
+
+                let plane = new THREE.Mesh(geoPlane, matPlane)
+                scene.add(plane)
+
+                plane.rotateX(-Math.PI/2)
+                plane.translateZ(-100)
+                plane.receiveShadow = true//设置接受阴影
+
+
+            //创建相机
+            const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 1, 1000)
+            camera.position.set(0,0,500)
+            // camera.lookAt(scene.position)
+
+            //加入点光源
+            const point = new THREE.PointLight(0xffffff)
+            point.position.set(400,200,300)//设置位置
+            scene.add(point)
+
+            //加入环境光源
+            const ambient = new THREE.AmbientLight(0x444444)
+            scene.add(ambient)//环境光不用设置光源位置
+
+            //设置方向光，用于设置投影
+            let DirectionalLight = new THREE.DirectionalLight(0xffffff)
+            DirectionalLight.position.set(0,500,0)
+            scene.add(DirectionalLight)
+            DirectionalLight.castShadow = true
+            //开始设置投影面的大小
+            DirectionalLight.shadow.camera.near = 0.5
+            DirectionalLight.shadow.camera.far = 1000
+            DirectionalLight.shadow.camera.left = -100
+            DirectionalLight.shadow.camera.right = 100
+            DirectionalLight.shadow.camera.top = 100
+            DirectionalLight.shadow.camera.bottom = -100
+
+            //插入辅助axis
+            const axis = new THREE.AxesHelper(250)
+            scene.add(axis)
+
+            //插入性能检测
+            const stats = new Stats();
+			document.body.appendChild( stats.dom );
+
+            //创建渲染器
+            const renderer = new THREE.WebGLRenderer()
+
+            renderer.setPixelRatio( window.devicePixelRatio );//设置设备像素比。通常用于避免HiDPI设备上绘图模糊
+            renderer.setSize(window.innerWidth,window.innerHeight)
+            renderer.setClearColor(0xf0f0f0)
+            document.body.appendChild(renderer.domElement)
+            renderer.shadowMap.enabled = true//设置渲染器，要求允许设置阴影投影
+
+            //实现鼠标操作
+            const controls = new THREE.OrbitControls(camera)
+            //添加渲染函数
+            controls.update()
+
+            //视觉旋转函数
+            function render(){
+                requestAnimationFrame(render)//定时函数
+                controls.update()
+
+                stats.begin()//性能检测模块
+                renderer.render(scene,camera)
+                cube.rotation.y +=0.01
+                stats.end()
+            }
+
+            render()
+
+
+            //成功插入性能检测ok
+            //搞懂两个插件ok
+            //搞懂自动阴影
+            //设置颜色
+            //优化snippets
+
+        </script>
+    </body>
+</html>
